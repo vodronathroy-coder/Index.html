@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Biology MCQ Quiz</title>
+<style>
+body{
+font-family: Arial;
+background:#f0f0f0;
+text-align:center;
+}
+
+.quiz-box{
+background:white;
+width:90%;
+max-width:500px;
+margin:auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+button{
+padding:10px 20px;
+margin-top:15px;
+font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+
+<h2>জীববিজ্ঞান MCQ কুইজ</h2>
+
+<div id="quiz"></div>
+
+<button onclick="showResult()">ফলাফল দেখুন</button>
+
+<h3 id="result"></h3>
+
+</div>
+
+<script>
+
+let questions = [
+
+{
+q:"কোষের শক্তিঘর কোনটি?",
+a:["মাইটোকন্ড্রিয়া","রাইবোজোম","লাইসোজোম","নিউক্লিয়াস"],
+c:0
+},
+
+{
+q:"DNA এর পূর্ণরূপ কী?",
+a:["Deoxyribo Nucleic Acid","Dynamic Nuclear Acid","Double Nitric Acid","None"],
+c:0
+},
+
+{
+q:"উদ্ভিদের খাদ্য তৈরির প্রক্রিয়া কী?",
+a:["শ্বাসক্রিয়া","প্রকাশসংশ্লেষ","পরিপাক","নিষ্কাশন"],
+c:1
+},
+
+{
+q:"মানবদেহে রক্তের রঙ লাল কেন?",
+a:["হিমোগ্লোবিন","প্লাজমা","প্লেটলেট","লিম্ফ"],
+c:0
+},
+
+{
+q:"মানবদেহে মোট কয়টি ক্রোমোজোম থাকে?",
+a:["46","23","44","48"],
+c:0
+}
+
+];
+
+let quiz = document.getElementById("quiz");
+
+questions.forEach((q,i)=>{
+let html="<p>"+(i+1)+". "+q.q+"</p>";
+
+q.a.forEach((opt,j)=>{
+html+=`
+<label>
+<input type="radio" name="q${i}" value="${j}">
+${opt}
+</label><br>
+`;
+});
+
+quiz.innerHTML+=html;
+});
+
+function showResult(){
+
+let score=0;
+
+questions.forEach((q,i)=>{
+let ans=document.querySelector('input[name="q'+i+'"]:checked');
+
+if(ans && ans.value==q.c){
+score++;
+}
+});
+
+document.getElementById("result").innerText=
+"আপনি পেয়েছেন "+score+" / "+questions.length;
+
+}
+
+</script>
+
+</body>
+</html>
